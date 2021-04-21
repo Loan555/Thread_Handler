@@ -40,12 +40,12 @@ class MainActivity : AppCompatActivity() {
                 when (event?.action) {
                     MotionEvent.ACTION_POINTER_DOWN -> {
 
-                        Log.d("aaa","pointer down")
+                        Log.d("aaa", "pointer down")
                     }
                     MotionEvent.ACTION_POINTER_UP -> {
 
-                    Log.d("aaa","pointer up")
-                }
+                        Log.d("aaa", "pointer up")
+                    }
                 }
                 return v?.onTouchEvent(event) ?: true
             }
@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
                 msg2.arg1 = color
                 handler.sendMessage(msg2)
                 try {
-                    Thread.sleep(3000)
+                    Thread.sleep(4000)
                 } catch (e: InterruptedException) {
                     Log.d("aaa", e.toString())
                 }
@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity() {
 
                 handler.sendMessage(msg)
                 try {
-                    Thread.sleep(50)
+                    Thread.sleep(20)
                 } catch (e: InterruptedException) {
                     Log.d("aaa", e.toString())
                 }
@@ -141,7 +141,7 @@ class MainActivity : AppCompatActivity() {
                 msg.arg1 = count
                 handler.sendMessage(msg)
                 try {
-                    Thread.sleep(50)
+                    Thread.sleep(20)
                 } catch (e: InterruptedException) {
                     Log.d("aaa", e.toString())
                 }
@@ -166,11 +166,10 @@ class MainActivity : AppCompatActivity() {
                 if (count > 0) {
                     flag_change = true
                     count-- // giam 1
-                     }
-                else if (count < 0) {
-                        flag_change = true
-                        count++
-                    }
+                } else if (count < 0) {
+                    flag_change = true
+                    count++
+                }
                 var msg = Message()//gui count di
                 msg.what = 1002
                 msg.arg1 = count
