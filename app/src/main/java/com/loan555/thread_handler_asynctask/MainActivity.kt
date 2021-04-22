@@ -35,16 +35,33 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        var dY: Float = 0.0f
+        var lastAction: Int
         text.setOnTouchListener(object : View.OnTouchListener {
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 when (event?.action) {
-                    MotionEvent.ACTION_POINTER_DOWN -> {
-
-                        Log.d("aaa", "pointer down")
+                    MotionEvent.ACTION_DOWN -> {
+                        dY = event.getRawY()
+                        lastAction = MotionEvent.ACTION_DOWN;
+                        Log.d("aaa", "down  $dY ")
                     }
-                    MotionEvent.ACTION_POINTER_UP -> {
-
-                        Log.d("aaa", "pointer up")
+                    MotionEvent.ACTION_MOVE -> {
+                        var y = event.getRawY()
+                        if (y > dY) {
+                            Log.d("aaa", "move  $y /$dY giam")
+                            setTextColor()
+                            doCountDown()
+                        } else if (y < dY) {
+                            Log.d("aaa", "move  $y tang")
+                            setTextColor()
+                            doCountUp()
+                        }
+                        dY = y
+                    }
+                    MotionEvent.ACTION_UP -> {
+                            setTextColor()
+                            doCountReset()
+                        Log.d("aaa", "up ")
                     }
                 }
                 return v?.onTouchEvent(event) ?: true
@@ -61,6 +78,10 @@ class MainActivity : AppCompatActivity() {
                     MotionEvent.ACTION_UP -> {
                         doCountReset()
                         setTextColor()
+                    }
+                    MotionEvent.ACTION_MOVE -> {
+
+                        Log.d("aaa", "move ")
                     }
                 }
                 return v?.onTouchEvent(event) ?: true
